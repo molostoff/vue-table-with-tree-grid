@@ -129,7 +129,7 @@ export default {
       if (typeof style === 'function') {
         if (certainType.cell) {
           const span = style.call(null, row, rowIndex, column, columnIndex);
-          return span > 0 ? `colspan=${span}` : '';
+          return span > 1 ? span : '';
         }
       }
       return style;
