@@ -1,6 +1,6 @@
 {
   "name": "vue-treetable-grid",
-  "version": "0.2.6",
+  "version": "0.3.0",
   "description": "A table (vue-treetable-grid) component for Vue.js 2.0.",
   "keywords": [
     "vue",
