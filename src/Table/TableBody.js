@@ -122,6 +122,19 @@ export default {
       return style;
     }
 
+    // span
+    function getColSpan(type, row, rowIndex, column, columnIndex) {
+      const certainType = this.validateType(type, ['cell'], 'getColSpan');
+      const style = this.table[`${type}ColSpan`];
+      if (typeof style === 'function') {
+        if (certainType.cell) {
+          const span = style.call(null, row, rowIndex, column, columnIndex);
+          return span > 0 ? `colspan=${span}` : '';
+        }
+      }
+      return style;
+    }
+
     // className
     function getClassName(type, row, rowIndex, column, columnIndex) {
       const certainType = this.validateType(type, ['cell', 'row', 'inner'], 'getClassName');
@@ -262,7 +275,7 @@ export default {
                   on-mouseleave={ $event => this.handleEvent($event, 'row', { row, rowIndex }, { hover: false }) }>
                   { this.table.tableColumns.map((column, columnIndex) =>
                       <td
-                        colspan
+                              { ...getColSpan.call(this, 'cell', row, rowIndex, column, columnIndex) }
                         style={ getStyle.call(this, 'cell', row, rowIndex, column, columnIndex) }
                         class={ getClassName.call(this, 'cell', row, rowIndex, column, columnIndex) }
                         on-click={ $event => this.handleEvent($event, 'cell', { row, rowIndex, column, columnIndex }) }
