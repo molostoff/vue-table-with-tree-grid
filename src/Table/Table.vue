@@ -220,6 +220,7 @@
       cellClassName: [String, Function],
       rowStyle: [Object, Function],
       cellStyle: [Object, Function],
+      cellColSpan: [Object, Function],
     },
     data() {
       return {
