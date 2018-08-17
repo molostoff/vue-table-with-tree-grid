@@ -307,8 +307,11 @@ export default {
                 class={ `${this.prefixCls}--empty-row` }>
                 <td
                   class={ `${this.prefixCls}__body-cell ${this.prefixCls}--empty-content` }
-                  colspan={ this.table.tableColumns.length }
-                  v-html="this.table.emptyText">
+                  colspan={ this.table.tableColumns.length }>
+                  { this.table.$scopedSlots.$emptyText
+                    ? this.table.$scopedSlots.$emptyText()
+                    : this.table.emptyText
+                  }
                 </td>
               </tr>
           }
