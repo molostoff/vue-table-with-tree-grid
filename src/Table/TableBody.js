@@ -98,6 +98,14 @@ export default {
     },
   },
   render() {
+    function getRowAttrs(row, rowIndex) {
+      const rowAttrs = this.table.rowAttrs;
+      if (rowAttrs) {
+        return rowAttrs.call(null, row, rowIndex);
+      }
+      return [];
+    }
+
     // key
     function getKey(row, rowIndex) {
       const rowKey = this.table.rowKey;
@@ -273,7 +281,9 @@ export default {
                   on-dblclick={ $event => this.handleEvent($event, 'row', { row, rowIndex }) }
                   on-contextmenu={ $event => this.handleEvent($event, 'row', { row, rowIndex }) }
                   on-mouseenter={ $event => this.handleEvent($event, 'row', { row, rowIndex }, { hover: true }) }
-                  on-mouseleave={ $event => this.handleEvent($event, 'row', { row, rowIndex }, { hover: false }) }>
+                  on-mouseleave={ $event => this.handleEvent($event, 'row', { row, rowIndex }, { hover: false }) }
+                  {...(this.table.rowAttrs ? getRowAttrs.call(this, row, rowIndex) : [])}
+                >
                   { this.table.tableColumns.map((column, columnIndex) =>
                       <td
                         colspan={getColSpan.call(this, 'cell', row, rowIndex, column, columnIndex) }

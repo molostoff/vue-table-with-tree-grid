@@ -216,6 +216,7 @@
         default: true,
       },
       rowKey: Function,
+      rowAttrs: Function,
       rowClassName: [String, Function],
       cellClassName: [String, Function],
       rowStyle: [Object, Function],
