@@ -265,6 +265,7 @@ export default {
               [
                 <tr
                   v-show={ !row._isHide }
+                  data-key={ this.table.rowKey ? getKey.call(this, row, rowIndex) : rowIndex }
                   key={ this.table.rowKey ? getKey.call(this, row, rowIndex) : rowIndex }
                   style={ getStyle.call(this, 'row', row, rowIndex) }
                   class={ getClassName.call(this, 'row', row, rowIndex) }
