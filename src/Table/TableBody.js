@@ -272,6 +272,7 @@ export default {
             ? this.table.bodyData.map((row, rowIndex) =>
               [
                 <tr
+                  {...(this.table.rowAttrs ? getRowAttrs.call(this, row, rowIndex) : [])}
                   v-show={ !row._isHide }
                   data-key={ this.table.rowKey ? getKey.call(this, row, rowIndex) : rowIndex }
                   key={ this.table.rowKey ? getKey.call(this, row, rowIndex) : rowIndex }
@@ -282,7 +283,6 @@ export default {
                   on-contextmenu={ $event => this.handleEvent($event, 'row', { row, rowIndex }) }
                   on-mouseenter={ $event => this.handleEvent($event, 'row', { row, rowIndex }, { hover: true }) }
                   on-mouseleave={ $event => this.handleEvent($event, 'row', { row, rowIndex }, { hover: false }) }
-                  {...(this.table.rowAttrs ? getRowAttrs.call(this, row, rowIndex) : [])}
                 >
                   { this.table.tableColumns.map((column, columnIndex) =>
                       <td
